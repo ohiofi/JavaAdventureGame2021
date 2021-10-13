@@ -2,6 +2,8 @@
 List of other classes and methods that we need to create
 
 Room
+ - NoArgsConstructor
+ - Room(String _name)
  - getCharacter()
  - getItem()
  - getLocationTo(String direction)
@@ -10,26 +12,36 @@ Room
  - setCharacter(Npc character)
  - setDescription(String d)
  - setItem(Item i)
+ - setName(String _name)
  - toString() // returns the description
  
 Npc
- - setSpeech
+ - NoArgsConstructor
+ - Npc(String _name, String _description)
  - getName
  - getSpeech
+ - setDescription(String d)
+ - setName(String _name)
+ - setSpeech
  - toString() // returns the description
  
 Enemy extends Npc
+ - NoArgsConstructor
+ - Enemy(String _name, String _description)
  - String getAttackName()
  - int getHealth
  - int getMagicType()
  - void loseHealth(int h)
  - void setAttackName()
- 
 
 Item
+ - NoArgsConstructor
+ - Item(String _name, String _description)
  - getMagicType()
  - getName()
  - getStrength()
+ - setDescription(String d)
+ - setName(String _name)
  - isBroken()
  - toString() // returns the description
  - weaken()
