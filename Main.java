@@ -30,7 +30,7 @@ Enemy extends Npc
  - Enemy(String _name, String _description)
  - String getAttackName()
  - int getHealth
- - int getMagicType()
+ - int getMagicWeakness()
  - void loseHealth(int h)
  - void setAttackName()
 
@@ -211,7 +211,11 @@ class Main {
       command = command.toLowerCase();
 
       if (command.equals("north") || command.equals("south") || command.equals("east") || command.equals("west")) {
-        currentRoom = currentRoom.getLocationTo(command);
+        if(currentRoom.getLocationTo(command) != null){
+          currentRoom = currentRoom.getLocationTo(command);
+        } else {
+          System.out.println("You can't go that way.");
+        }
       } else if (command.equals("take")) {
         takeItem(currentRoom, backpack);
       } else if (command.equals("talk")) {
@@ -242,12 +246,12 @@ class Main {
   public static void takeItem(Room currentRoom, Item backpack) {
     if (backpack != null) {
       Item temp = backpack;
-      backpack = roomItem;
+      backpack = currentRoom.getItem();
       currentRoom.setItem(temp);
       System.out.println("You drop " + temp + " and pick up " + roomItem + ".");
     } else {
       // not holding anything right now
-      backpack = roomItem;
+      backpack = currentRoom.getItem();
       System.out.println("You pick up " + roomItem + ".");
       currentRoom.setItem(null);
     }
